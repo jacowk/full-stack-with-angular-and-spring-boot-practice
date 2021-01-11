@@ -23,6 +23,24 @@ public class TodoHardcodedService {
 		return todos;
 	}
 	
+	public Todo save(Todo todo) {
+		System.out.printf("Todo Save Id: %d\n", todo.getId());
+		if (todo.getId() == -1 || todo.getId() == 0) {
+			System.out.println("Inserting");
+			//Insert new Todo
+			todo.setId(++idCounter);
+			todos.add(todo);
+		}
+		else {
+			//Update existing Todo
+			System.out.println("Updating");
+			todos.remove(todo);
+			todos.add(todo);
+		}
+		return todo;
+	}
+	
+	
 	public Todo deleteById(long id) {
 		Todo todo = findById(id);
 		if (todo == null) return null;
